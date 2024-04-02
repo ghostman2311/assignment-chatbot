@@ -19,17 +19,18 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
 import { useState, Fragment } from "react";
+import Link from "next/link";
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
+  { name: "Dashboard", href: "/", icon: HomeIcon, current: false },
+  { name: "Calendar", href: "/calendar", icon: CalendarIcon, current: true },
   { name: "Projects", href: "#", icon: FolderIcon, current: false },
 ];
 
 const teams: any[] = [
-//   { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-//   { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-//   { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
+  //   { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
+  //   { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
+  //   { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
 ];
 const userNavigation = [
   { name: "Your profile", href: "#" },
@@ -117,7 +118,7 @@ export default function Sidebar({ children }: SidebarProps) {
                           <ul role="list" className="-mx-2 space-y-1">
                             {navigation.map((item) => (
                               <li key={item.name}>
-                                <a
+                                <Link
                                   href={item.href}
                                   className={classNames(
                                     item.current
@@ -136,7 +137,7 @@ export default function Sidebar({ children }: SidebarProps) {
                                     aria-hidden="true"
                                   />
                                   {item.name}
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>
@@ -148,7 +149,7 @@ export default function Sidebar({ children }: SidebarProps) {
                           <ul role="list" className="-mx-2 mt-2 space-y-1">
                             {teams.map((team) => (
                               <li key={team.name}>
-                                <a
+                                <Link
                                   href={team.href}
                                   className={classNames(
                                     team.current
@@ -161,14 +162,14 @@ export default function Sidebar({ children }: SidebarProps) {
                                     {team.initial}
                                   </span>
                                   <span className="truncate">{team.name}</span>
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>
                         </li>
                         <li className="mt-auto">
-                          <a
-                            href="#"
+                          <Link
+                            href="/settings"
                             className="group -mx-2 flex gap-x-3 rounded-md p-2 text-md font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white"
                           >
                             <Cog6ToothIcon
@@ -176,7 +177,7 @@ export default function Sidebar({ children }: SidebarProps) {
                               aria-hidden="true"
                             />
                             Settings
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </nav>
@@ -204,7 +205,7 @@ export default function Sidebar({ children }: SidebarProps) {
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
                             item.current
@@ -223,7 +224,7 @@ export default function Sidebar({ children }: SidebarProps) {
                             aria-hidden="true"
                           />
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -254,8 +255,8 @@ export default function Sidebar({ children }: SidebarProps) {
                   </ul>
                 </li>
                 <li className="mt-auto">
-                  <a
-                    href="#"
+                  <Link
+                    href="/settings"
                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-md font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white"
                   >
                     <Cog6ToothIcon
@@ -263,9 +264,9 @@ export default function Sidebar({ children }: SidebarProps) {
                       aria-hidden="true"
                     />
                     Settings
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href="/integration"
                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-md font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white"
                   >
                     <Cog6ToothIcon
@@ -273,7 +274,7 @@ export default function Sidebar({ children }: SidebarProps) {
                       aria-hidden="true"
                     />
                     Integrations
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -375,8 +376,9 @@ export default function Sidebar({ children }: SidebarProps) {
               </div>
             </div>
           </div>
-
-          <main className="py-10">
+        </div>
+        <div className="lg:pl-80 bg-slate-100 h-screen">
+          <main>
             <div className="px-4 sm:px-6 lg:px-8">{children}</div>
           </main>
         </div>
