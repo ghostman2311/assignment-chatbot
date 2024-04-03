@@ -14,17 +14,20 @@ import {
   LinkIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useState, Fragment } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: HomeIcon, current: false },
   { name: "Calendar", href: "/calendar", icon: CalendarIcon, current: true },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
+  {
+    name: "Brands",
+    href: "/competitors/brands",
+    icon: FolderIcon,
+    current: false,
+  },
 ];
 
 const teams: any[] = [
@@ -47,6 +50,7 @@ interface SidebarProps {
 
 export default function Sidebar({ children }: SidebarProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const path = usePathname();
 
   return (
     <Fragment>
@@ -208,7 +212,7 @@ export default function Sidebar({ children }: SidebarProps) {
                         <Link
                           href={item.href}
                           className={classNames(
-                            item.current
+                            path === item.href
                               ? "bg-orange-600 text-orange-100"
                               : "text-orange-600 hover:text-white hover:bg-orange-600",
                             "group flex gap-x-3 rounded-md p-2 text-md leading-6 font-semibold"
@@ -257,21 +261,42 @@ export default function Sidebar({ children }: SidebarProps) {
                 <li className="mt-auto">
                   <Link
                     href="/settings"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-md font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white"
+                    className={classNames(
+                      path.includes("settings")
+                        ? " bg-orange-600 text-orange-100"
+                        : "text-orange-600 hover:text-white hover:bg-orange-600",
+                      "group -mx-2 flex gap-x-3 rounded-md p-2 text-md font-semibold leading-6"
+                    )}
                   >
                     <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-orange-600 group-hover:text-white"
+                      className={classNames(
+                        path.includes("settings")
+                          ? " bg-orange-600 text-orange-100"
+                          : "text-orange-600 group-hover:text-white",
+                        "h-6 w-6 shrink-0"
+                      )}
                       aria-hidden="true"
                     />
                     Settings
                   </Link>
                   <Link
                     href="/integration"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-md font-semibold leading-6 text-orange-600 hover:bg-orange-600 hover:text-white"
+                    className={classNames(
+                      path.includes("integration")
+                        ? " bg-orange-600 text-orange-100"
+                        : "text-orange-600 hover:text-white hover:bg-orange-600",
+                      "group -mx-2 flex gap-x-3 rounded-md p-2 text-md font-semibold leading-6 mt-5"
+                    )}
                   >
                     <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-orange-600 group-hover:text-white"
+                      className={classNames(
+                        path.includes("integration")
+                          ? " bg-orange-600 text-orange-100"
+                          : "text-orange-600 group-hover:text-white",
+                        "h-6 w-6 shrink-0"
+                      )}
                       aria-hidden="true"
+                      // bg-orange-600 text-orange-100
                     />
                     Integrations
                   </Link>
@@ -281,7 +306,7 @@ export default function Sidebar({ children }: SidebarProps) {
           </div>
         </div>
 
-        <div className="lg:pl-75">
+        <div className="lg:pl-75 h-5">
           <div className="sticky top-0 z-50 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
@@ -377,7 +402,7 @@ export default function Sidebar({ children }: SidebarProps) {
             </div>
           </div>
         </div>
-        <div className="lg:pl-80 bg-slate-100 h-screen">
+        <div className="lg:pl-80 mt-10 bg-slate-100 h-screen">
           <main>
             <div className="px-4 sm:px-6 lg:px-0">{children}</div>
           </main>
