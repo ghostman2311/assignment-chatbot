@@ -379,7 +379,7 @@ export default function Sidebar({ children }: SidebarProps) {
         </div>
         <div className="lg:pl-80 bg-slate-100 h-screen">
           <main>
-            <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+            <div className="px-4 sm:px-6 lg:px-0">{children}</div>
           </main>
         </div>
       </div>
